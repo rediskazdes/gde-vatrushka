@@ -1,9 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My Project Site</title>
-  </head>
-  <body>
-    <h1>Welcome to my project!</h1>
-  </body>
+<head>
+    <title>Где Ватрушка?</title>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 12px;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Где Ватрушка?</h1>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            const moscow = { lat: 55.7558, lng: 37.6173 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 11,
+                center: moscow,
+            });
+            
+            // Your list of places
+            const places = [
+                { name: "Place 1", lat: 55.7558, lng: 37.6173 },
+                { name: "Place 2", lat: 55.7517, lng: 37.6178 },
+                // Add more places
+            ];
+
+            places.forEach(place => {
+                new google.maps.Marker({
+                    position: { lat: place.lat, lng: place.lng },
+                    map,
+                    title: place.name
+                });
+            });
+        }
+    </script>
+    <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvKtH9aeQYROLP4p_rxDz8eb72iimY7RY&callback=initMap"
+        async defer>
+    </script>
+</body>
 </html>

@@ -1,39 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ex-USSR Restaurants in NL</title>
+    <title>Slavic Restaurants Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <style>
-        #map {
-            height: 600px;
-            width: 100%;
-            border-radius: 12px;
-        }
         body {
             margin: 0;
-            padding: 20px;
+            padding: 0;
             font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
+            display: flex;
+            min-height: 100vh;
         }
-        .restaurant-list {
-            margin-top: 20px;
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
-        .restaurant-item {
-            padding: 10px;
+
+        .header {
+            padding: 20px;
+            background-color: #fff;
             border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .restaurant-list {
+            padding: 10px;
+        }
+
+        .restaurant-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .restaurant-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .restaurant-item h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Main content styles */
+        .main-content {
+            flex: 1;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* Make the map container fill the available space */
+        .leaflet-container {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
-    <h1>ex-USSR Restaurants in NL</h1>
-    <div id="map"></div>
-    <div class="restaurant-list" id="restaurantList"></div>
+    <div class="sidebar">
+        <div class="header">
+            <h1 style="margin: 0; font-size: 20px;">Slavic Restaurants</h1>
+        </div>
+        <div class="restaurant-list" id="restaurantList"></div>
+    </div>
+    
+    <div class="main-content">
+        <div id="map"></div>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Your places array goes here
-        // Your list with coordinates extracted and formatted:
         const places = [
             {
                 name: "Batoni Khinkali",
@@ -117,7 +165,6 @@
             }
         ];
 
-        // Initialize map centered on Netherlands
         const map = L.map('map').setView([52.3676, 4.9041], 8);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
@@ -131,7 +178,7 @@
                 .bindPopup(`<b>${place.name}</b>`)
                 .addTo(map);
 
-            // Add to list
+            // Add to sidebar list
             const div = document.createElement('div');
             div.className = 'restaurant-item';
             div.innerHTML = `<h3>${place.name}</h3>`;

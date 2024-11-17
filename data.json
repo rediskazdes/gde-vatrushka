@@ -5,7 +5,7 @@
         "lat": 52.355913746241185,
         "lng": 4.870409520442866,
         "price": "€20-€30",
-        "cuisine": "Georgian, Traditional",
+        "cuisine": "Georgian",
         "location": "Amsterdam"
       },
       {
@@ -13,7 +13,7 @@
         "lat": 52.01108533303245,
         "lng": 4.358729437913499,
         "price": "€25-€35",
-        "cuisine": "Georgian, Family-style",
+        "cuisine": "Georgian",
         "location": "Delft"
       },
       {
@@ -21,7 +21,7 @@
         "lat": 52.08137363020942,
         "lng": 4.298655364131665,
         "price": "€30-€45",
-        "cuisine": "Georgian, Casual",
+        "cuisine": "Georgian",
         "location": "The Hague"
       },
       {
@@ -29,7 +29,7 @@
         "lat": 52.222598962137205,
         "lng": 5.17494360783017,
         "price": "€20-€30",
-        "cuisine": "Georgian, Authentic",
+        "cuisine": "Georgian",
         "location": "Hilversum"
       },
       {
@@ -37,7 +37,7 @@
         "lat": 52.10218390004364,
         "lng": 4.2834566961255796,
         "price": "€25-€35",
-        "cuisine": "Georgian, Traditional",
+        "cuisine": "Georgian",
         "location": "Scheveningen"
       },
       {
@@ -45,7 +45,7 @@
         "lat": 53.22434834827947,
         "lng": 6.553147896988562,
         "price": "€20-€35",
-        "cuisine": "Traditional Ukrainian",
+        "cuisine": "Ukrainian",
         "location": "Groningen"
       },
       {
@@ -53,7 +53,7 @@
         "lat": 52.269785519674095,
         "lng": 4.746392421188538,
         "price": "€15-€30",
-        "cuisine": "Ukrainian Deli",
+        "cuisine": "Ukrainian",
         "location": "Aalsmeer"
       },
       {

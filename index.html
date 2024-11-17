@@ -12,9 +12,8 @@
             min-height: 100vh;
         }
 
-        /* Sidebar styles */
         .sidebar {
-            width: 300px;
+            width: 350px;
             height: 100vh;
             overflow-y: auto;
             background-color: #f8f9fa;
@@ -35,23 +34,44 @@
         }
 
         .restaurant-item {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s ease;
         }
 
         .restaurant-item:hover {
-            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .restaurant-item h3 {
-            margin: 0;
-            font-size: 16px;
+        .restaurant-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 0 10px 0;
+            color: #000;
+        }
+
+        .restaurant-details {
+            display: flex;
+            align-items: center;
+            gap: 20px;
             color: #333;
         }
 
-        /* Main content styles */
+        .restaurant-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .star {
+            color: #ff9c07;
+        }
+
         .main-content {
             flex: 1;
         }
@@ -61,7 +81,6 @@
             width: 100%;
         }
 
-        /* Make the map container fill the available space */
         .leaflet-container {
             width: 100%;
             height: 100%;
@@ -86,12 +105,18 @@
             {
                 name: "Batoni Khinkali",
                 lat: 52.355913746241185,
-                lng: 4.870409520442866
+                lng: 4.870409520442866,
+                rating: 4.8,
+                price: "€25",
+                location: "Amsterdam"
             },
             {
                 name: "Restobar K Family",
                 lat: 52.01108533303245,
-                lng: 4.358729437913499
+                lng: 4.358729437913499,
+                rating: 4.5,
+                price: "€30",
+                location: "Den Haag"
             },
             {
                 name: "Suhumi",
@@ -170,18 +195,25 @@
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Add markers and create list
         const restaurantList = document.getElementById('restaurantList');
         places.forEach(place => {
-            // Add marker
             const marker = L.marker([place.lat, place.lng])
                 .bindPopup(`<b>${place.name}</b>`)
                 .addTo(map);
 
-            // Add to sidebar list
             const div = document.createElement('div');
             div.className = 'restaurant-item';
-            div.innerHTML = `<h3>${place.name}</h3>`;
+            div.innerHTML = `
+                <h3 class="restaurant-name">${place.name}</h3>
+                <div class="restaurant-details">
+                    <div class="restaurant-rating">
+                        <span class="star">★</span>
+                        <span>${place.rating}</span>
+                    </div>
+                    <span>${place.price}</span>
+                    <span>${place.location}</span>
+                </div>
+            `;
             div.addEventListener('click', () => {
                 map.setView([place.lat, place.lng], 15);
                 marker.openPopup();

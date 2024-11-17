@@ -1,0 +1,132 @@
+{
+    "restaurants": [
+      {
+        "name": "Batoni Khinkali",
+        "lat": 52.355913746241185,
+        "lng": 4.870409520442866,
+        "price": "€20-€30",
+        "cuisine": "Georgian, Traditional",
+        "location": "Amsterdam"
+      },
+      {
+        "name": "Restobar K Family",
+        "lat": 52.01108533303245,
+        "lng": 4.358729437913499,
+        "price": "€25-€35",
+        "cuisine": "Georgian, Family-style",
+        "location": "Delft"
+      },
+      {
+        "name": "Suhumi",
+        "lat": 52.08137363020942,
+        "lng": 4.298655364131665,
+        "price": "€30-€45",
+        "cuisine": "Georgian, Casual",
+        "location": "The Hague"
+      },
+      {
+        "name": "Old Tbilisi",
+        "lat": 52.222598962137205,
+        "lng": 5.17494360783017,
+        "price": "€20-€30",
+        "cuisine": "Georgian, Authentic",
+        "location": "Hilversum"
+      },
+      {
+        "name": "Iberia",
+        "lat": 52.10218390004364,
+        "lng": 4.2834566961255796,
+        "price": "€25-€35",
+        "cuisine": "Georgian, Traditional",
+        "location": "Scheveningen"
+      },
+      {
+        "name": "Ukraine Food",
+        "lat": 53.22434834827947,
+        "lng": 6.553147896988562,
+        "price": "€20-€35",
+        "cuisine": "Traditional Ukrainian",
+        "location": "Groningen"
+      },
+      {
+        "name": "Vesela Pani",
+        "lat": 52.269785519674095,
+        "lng": 4.746392421188538,
+        "price": "€15-€30",
+        "cuisine": "Ukrainian Deli",
+        "location": "Aalsmeer"
+      },
+      {
+        "name": "Borscht Ukrainian Bistro",
+        "lat": 52.921804228610405,
+        "lng": 4.76070490702342,
+        "price": "€10-€20",
+        "cuisine": "Ukrainian",
+        "location": "Alkmaar"
+      },
+      {
+        "name": "Smak",
+        "lat": 52.07535809434404,
+        "lng": 4.3201464989861,
+        "price": "€10",
+        "cuisine": "Russian & Ukrainian",
+        "location": "The Hague"
+      },
+      {
+        "name": "Sunny Side Jordaan",
+        "lat": 52.37506629185914,
+        "lng": 4.882775821960926,
+        "price": "€10-€20",
+        "cuisine": "Russian & Ukrainian",
+        "location": "Amsterdam"
+      },
+      {
+        "name": "Sunny Side Vondel",
+        "lat": 52.352369070040154,
+        "lng": 4.855901701959563,
+        "price": "€20-€30",
+        "cuisine": "Russian & Ukrainian",
+        "location": "Amsterdam"
+      },
+      {
+        "name": "Blin Queen (Centrum)",
+        "lat": 52.36858204139,
+        "lng": 4.897260213949552,
+        "price": "€10-€20",
+        "cuisine": "Russian & Ukrainian",
+        "location": "Amsterdam"
+      },
+      {
+        "name": "Blin Queen (Oost)",
+        "lat": 52.358902864344586,
+        "lng": 4.9292355449857075,
+        "price": "€20-€30",
+        "cuisine": "Russian & Ukrainian",
+        "location": "Amsterdam"
+      },
+      {
+        "name": "Restaurant Noah Lieven",
+        "lat": 52.348855060582565,
+        "lng": 4.837680802846677,
+        "price": "€20-€30",
+        "cuisine": "Caucasian",
+        "location": "Amsterdam"
+      },
+      {
+        "name": "Natalia's Kitchen",
+        "lat": 52.2179175294587,
+        "lng": 5.171702160880966,
+        "price": "€10-€20",
+        "cuisine": "Eastern European",
+        "location": "Hilversum"
+      },
+      {
+        "name": "Sonya restaurant",
+        "lat": 52.1072035766851,
+        "lng": 4.275080374509906,
+        "price": "€20-€40",
+        "cuisine": "Ukrainian",
+        "location": "The Hague"
+      }
+    ]
+  }

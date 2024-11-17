@@ -100,126 +100,56 @@
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        const places = [
-            {
-                name: "Batoni Khinkali",
-                lat: 52.355913746241185,
-                lng: 4.870409520442866,
-                rating: 4.8,
-                price: "€25",
-                location: "Amsterdam"
-            },
-            {
-                name: "Restobar K Family",
-                lat: 52.01108533303245,
-                lng: 4.358729437913499,
-                rating: 4.5,
-                price: "€30",
-                location: "Den Haag"
-            },
-            {
-                name: "Suhumi",
-                lat: 52.08137363020942,
-                lng: 4.298655364131665
-            },
-            {
-                name: "Old Tbilisi",
-                lat: 52.222598962137205,
-                lng: 5.17494360783017
-            },
-            {
-                name: "Iberia",
-                lat: 52.10218390004364,
-                lng: 4.2834566961255796
-            },
-            {
-                name: "Ukraine Food",
-                lat: 53.22434834827947,
-                lng: 6.553147896988562
-            },
-            {
-                name: "Vesela Pani",
-                lat: 52.269785519674095,
-                lng: 4.746392421188538
-            },
-            {
-                name: "Borscht Ukrainian Bistro",
-                lat: 52.921804228610405,
-                lng: 4.76070490702342
-            },
-            {
-                name: "Smak",
-                lat: 52.07535809434404,
-                lng: 4.3201464989861
-            },
-            {
-                name: "Sunny Side Jordaan",
-                lat: 52.37506629185914,
-                lng: 4.882775821960926
-            },
-            {
-                name: "Sunny Side Vondel",
-                lat: 52.352369070040154,
-                lng: 4.855901701959563
-            },
-            {
-                name: "Blin Queen (Centrum)",
-                lat: 52.36858204139,
-                lng: 4.897260213949552
-            },
-            {
-                name: "Blin Queen (Oost)",
-                lat: 52.358902864344586,
-                lng: 4.9292355449857075
-            },
-            {
-                name: "Restaurant Noah Lieven",
-                lat: 52.348855060582565,
-                lng: 4.837680802846677
-            },
-            {
-                name: "Natalia's Kitchen",
-                lat: 52.2179175294587,
-                lng: 5.171702160880966
-            },
-            {
-                name: "Sonya restaurant",
-                lat: 52.1072035766851,
-                lng: 4.275080374509906
-            }
-        ];
+<script>
+    // Initialize map first
+    const map = L.map('map').setView([52.3676, 4.9041], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
 
-        const map = L.map('map').setView([52.3676, 4.9041], 8);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+    // Fetch and display data
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const places = data.restaurants;
+            const restaurantList = document.getElementById('restaurantList');
+            
+            places.forEach(place => {
+                // Create marker
+                const marker = L.marker([place.lat, place.lng])
+                    .bindPopup(`
+                        <b>${place.name}</b><br>
+                        ${place.cuisine}<br>
+                        ${place.price}
+                    `)
+                    .addTo(map);
 
-        const restaurantList = document.getElementById('restaurantList');
-        places.forEach(place => {
-            const marker = L.marker([place.lat, place.lng])
-                .bindPopup(`<b>${place.name}</b>`)
-                .addTo(map);
-
-            const div = document.createElement('div');
-            div.className = 'restaurant-item';
-            div.innerHTML = `
-                <h3 class="restaurant-name">${place.name}</h3>
-                <div class="restaurant-details">
-                    <div class="restaurant-rating">
-                        <span class="star">★</span>
-                        <span>${place.rating}</span>
+                // Create list item
+                const div = document.createElement('div');
+                div.className = 'restaurant-item';
+                div.innerHTML = `
+                    <h3 class="restaurant-name">${place.name}</h3>
+                    <div class="restaurant-details">
+                        <span>${place.cuisine}</span>
                     </div>
-                    <span>${place.price}</span>
-                    <span>${place.location}</span>
-                </div>
-            `;
-            div.addEventListener('click', () => {
-                map.setView([place.lat, place.lng], 15);
-                marker.openPopup();
+                    <div class="restaurant-details">
+                        <span>${place.price}</span>
+                        <span>${place.location}</span>
+                    </div>
+                `;
+                
+                div.addEventListener('click', () => {
+                    map.setView([place.lat, place.lng], 15);
+                    marker.openPopup();
+                });
+                restaurantList.appendChild(div);
             });
-            restaurantList.appendChild(div);
+        })
+        .catch(error => {
+            console.error('Error loading data:', error);
+            document.getElementById('restaurantList').innerHTML = 
+                '<div class="restaurant-item">Error loading restaurants data</div>';
         });
-    </script>
+</script>
 </body>
 </html>

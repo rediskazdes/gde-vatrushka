@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Где Ватрушка?</title>
+    <title>Slavic Restaurants Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <style>
         #map {
-            height: 500px;
+            height: 600px;
             width: 100%;
             border-radius: 12px;
         }
@@ -12,40 +13,134 @@
             margin: 0;
             padding: 20px;
             font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .restaurant-list {
+            margin-top: 20px;
+        }
+        .restaurant-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
         }
     </style>
 </head>
 <body>
-    <h1>Где Ватрушка?</h1>
+    <h1>Slavic Restaurants in Netherlands</h1>
     <div id="map"></div>
+    <div class="restaurant-list" id="restaurantList"></div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        function initMap() {
-            const amsterdam = { lat: 52.36996174955321, lng: 4.87950961324686 };
-            const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 11,
-                center: amsterdam,
-            });
-            
-            // Your list of places
-            const places = [
-                { name: "Place 1", lat: 52.3748826032717, lng: 4.882829252881696 },
+        // Your places array goes here
+        // Your list with coordinates extracted and formatted:
+        const places = [
+            {
+                name: "Batoni Khinkali",
+                lat: 52.355913746241185,
+                lng: 4.870409520442866
+            },
+            {
+                name: "Restobar K Family",
+                lat: 52.01108533303245,
+                lng: 4.358729437913499
+            },
+            {
+                name: "Suhumi",
+                lat: 52.08137363020942,
+                lng: 4.298655364131665
+            },
+            {
+                name: "Old Tbilisi",
+                lat: 52.222598962137205,
+                lng: 5.17494360783017
+            },
+            {
+                name: "Iberia",
+                lat: 52.10218390004364,
+                lng: 4.2834566961255796
+            },
+            {
+                name: "Ukraine Food",
+                lat: 53.22434834827947,
+                lng: 6.553147896988562
+            },
+            {
+                name: "Vesela Pani",
+                lat: 52.269785519674095,
+                lng: 4.746392421188538
+            },
+            {
+                name: "Borscht Ukrainian Bistro",
+                lat: 52.921804228610405,
+                lng: 4.76070490702342
+            },
+            {
+                name: "Smak",
+                lat: 52.07535809434404,
+                lng: 4.3201464989861
+            },
+            {
+                name: "Sunny Side Jordaan",
+                lat: 52.37506629185914,
+                lng: 4.882775821960926
+            },
+            {
+                name: "Sunny Side Vondel",
+                lat: 52.352369070040154,
+                lng: 4.855901701959563
+            },
+            {
+                name: "Blin Queen (Centrum)",
+                lat: 52.36858204139,
+                lng: 4.897260213949552
+            },
+            {
+                name: "Blin Queen (Oost)",
+                lat: 52.358902864344586,
+                lng: 4.9292355449857075
+            },
+            {
+                name: "Restaurant Noah Lieven",
+                lat: 52.348855060582565,
+                lng: 4.837680802846677
+            },
+            {
+                name: "Natalia's Kitchen",
+                lat: 52.2179175294587,
+                lng: 5.171702160880966
+            },
+            {
+                name: "Sonya restaurant",
+                lat: 52.1072035766851,
+                lng: 4.275080374509906
+            }
+        ];
 
-                // Add more places
-            ];
+        // Initialize map centered on Netherlands
+        const map = L.map('map').setView([52.3676, 4.9041], 8);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-            places.forEach(place => {
-                new google.maps.Marker({
-                    position: { lat: place.lat, lng: place.lng },
-                    map,
-                    title: place.name
-                });
+        // Add markers and create list
+        const restaurantList = document.getElementById('restaurantList');
+        places.forEach(place => {
+            // Add marker
+            const marker = L.marker([place.lat, place.lng])
+                .bindPopup(`<b>${place.name}</b>`)
+                .addTo(map);
+
+            // Add to list
+            const div = document.createElement('div');
+            div.className = 'restaurant-item';
+            div.innerHTML = `<h3>${place.name}</h3>`;
+            div.addEventListener('click', () => {
+                map.setView([place.lat, place.lng], 15);
+                marker.openPopup();
             });
-        }
-    </script>
-    <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvKtH9aeQYROLP4p_rxDz8eb72iimY7RY&callback=initMap"
-        async defer>
+            restaurantList.appendChild(div);
+        });
     </script>
 </body>
 </html>
